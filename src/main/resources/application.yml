@@ -1,0 +1,54 @@
+##服务名 和 注册nacos
+spring:
+  application:
+    name: blog
+  # cloud:
+  #  nacos:
+  #    discovery:
+  #      server-addr: 127.0.0.1:8848
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
+    freemarker:
+      cache: false    #页面不加载缓存，修改即时生效
+
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/blog
+#    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+server:
+  port: 9056
+
+mybatis:
+  mapper-locations: classpath*:/mapper/*Dao.xml
+  type-aliases-package: com.yelow.myexcel.entity
+
+shiro-redis:
+  enable: true
+  redis-manager:
+    host: 127.0.0.1:6379
+
+
+yellow:
+  jwt:
+    #加密秘钥
+    secret: f4e2e52034348f86b67cde581c0f9eb5
+    # token有效时长，7天，单优秒
+    expire: 604800
+    header: Authorizationl
+
+
+#分页插件
+pagehelper:
+  helper-dialect: mysql
+  params:
+    count: countSql
+  reasonable: true
+  support-methods-arguments: true
+
